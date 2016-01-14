@@ -1,13 +1,20 @@
-PROMPT='$(print_user) %{$fg[green]%}%~%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
+PROMPT='$(print_chroot)$(print_user)%{$fg[green]%}%~%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
 
-#user info
+# chroot info
+function print_chroot()
+{
+  if [ -f /etc/debian_chroot ];
+  then
+    echo "($(cat /etc/debian_chroot))";
+  fi
+}
+
+# user info
 function print_user()
 {
   # Don't care unless it is the root user - he's scary
   if [[ $(whoami) == "root" ]]; then 
     echo "$(whoami)@$(hostname)";
-  else
-    echo "";
   fi
 }
 
