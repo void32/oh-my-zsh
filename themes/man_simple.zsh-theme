@@ -14,7 +14,7 @@ function print_user()
 {
   # Don't care unless it is the root user - he's scary
   if [[ $(whoami) == "root" ]]; then 
-    echo "$(whoami)@$(hostname)";
+    echo "$(whoami)@$(hostname):";
   fi
 }
 
